@@ -116,7 +116,7 @@ public class PasswordValidationTest {
     @Test
     void isWellKnownPassword_whenEasyPassword2_expectTrue() {
         //GIVEN
-        String password = "passwort";
+        String password = "password";
         //WHEN
         boolean result = PasswordValidation.isWellKnownPassword(password);
         //THEN
@@ -129,6 +129,56 @@ public class PasswordValidationTest {
         String password = "dskjjfhaskfaöksdlhf54";
         //WHEN
         boolean result = PasswordValidation.isWellKnownPassword(password);
+        //THEN
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void isSafe_whenEmpty_expectFalse() {
+        //GIVEN
+        String password = "";
+        //WHEN
+        boolean result = PasswordValidation.isSafe(password);
+        //THEN
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void isSafe_whenHardPassword_expectTrue() {
+        //GIVEN
+        String password = "ölkdjsfADSFasd652!";
+        //WHEN
+        boolean result = PasswordValidation.isSafe(password);
+        //THEN
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void isSafe_whenLongLowercase_expectFalse() {
+        //GIVEN
+        String password = "fkjdhkdsdfasdf";
+        //WHEN
+        boolean result = PasswordValidation.isSafe(password);
+        //THEN
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void isSafe_whenLongLowercaseAndUppercase_expectFalse() {
+        //GIVEN
+        String password = "fkjdhkdASDFsdf";
+        //WHEN
+        boolean result = PasswordValidation.isSafe(password);
+        //THEN
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void isSafe_whenLongLowercaseAndUppercaseWithDigit_expectFalse() {
+        //GIVEN
+        String password = "Password1";
+        //WHEN
+        boolean result = PasswordValidation.isSafe(password);
         //THEN
         Assertions.assertFalse(result);
     }
