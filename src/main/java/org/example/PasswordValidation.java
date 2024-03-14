@@ -1,3 +1,5 @@
+package org.example;
+
 public class PasswordValidation {
 
     public static boolean isAtLeast8CharactersLong(String password) {
