@@ -39,9 +39,14 @@ public class PasswordValidation {
     }
 
     public static boolean isSafe(String password) {
-            return isAtLeast8CharactersLong(password)
-            && containsLowerAndUppercaseCharacters(password)
-            && containsDigit(password)
-            && !isWellKnownPassword(password);
+        return isAtLeast8CharactersLong(password)
+                && containsLowerAndUppercaseCharacters(password)
+                && containsDigit(password)
+                && !isWellKnownPassword(password)
+                && containsSpecialCharacters(password);
+    }
+
+    public static boolean containsSpecialCharacters(String password) {
+        return password.matches(".*[^0-9a-zA-Z].*");
     }
 }

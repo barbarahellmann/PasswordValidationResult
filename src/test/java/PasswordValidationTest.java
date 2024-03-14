@@ -174,6 +174,16 @@ public class PasswordValidationTest {
     }
 
     @Test
+    void isSafe_whenLongLowercaseAndUppercaseWithDigitNotWellKnown_expectFalse() {
+        //GIVEN
+        String password = "fdslkfjasdf56468354DASD";
+        //WHEN
+        boolean result = PasswordValidation.isSafe(password);
+        //THEN
+        Assertions.assertFalse(result);
+    }
+
+    @Test
     void isSafe_whenLongLowercaseAndUppercaseWithDigit_expectFalse() {
         //GIVEN
         String password = "Password1";
@@ -181,5 +191,25 @@ public class PasswordValidationTest {
         boolean result = PasswordValidation.isSafe(password);
         //THEN
         Assertions.assertFalse(result);
+    }
+
+    @Test
+    void containsSpecialCharacters_whenEmpty_expectFalse() {
+        //GIVEN
+        String password = "";
+        //WHEN
+        boolean result = PasswordValidation.containsSpecialCharacters(password);
+        //THEN
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void containsSpecialCharacters_whenOneAsterisk_expectTrue() {
+        //GIVEN
+        String password = "*";
+        //WHEN
+        boolean result = PasswordValidation.containsSpecialCharacters(password);
+        //THEN
+        Assertions.assertTrue(result);
     }
 }
