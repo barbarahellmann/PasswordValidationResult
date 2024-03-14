@@ -24,4 +24,14 @@ public class PasswordValidation {
         }
         return false;
     }
+
+    public static boolean isWellKnownPassword(String password) {
+        if ("123456".equals(password)) {
+            return true;
+        }
+        if ("passwort".equals(password)) {
+            return true;
+        }
+        return false;
+    }
 }
